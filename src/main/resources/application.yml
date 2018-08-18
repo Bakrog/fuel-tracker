@@ -1,0 +1,23 @@
+debug: ${debug}
+trace: ${trace}
+
+spring:
+  main:
+    banner-mode: "off"
+  application:
+    name: "Fuel Tracker"
+  datasource:
+    hikari:
+      connection-timeout: ${datasource.connection-timeout}
+      minimum-idle: ${datasource.minimum-idle}
+      maximum-pool-size: ${datasource.maximum-pool-size}
+      idle-timeout: ${datasource.idle-timeout}
+      max-lifetime: ${datasource.max-lifetime}
+      auto-commit: ${datasource.auto-commit}
+  jpa:
+    hibernate:
+      use-new-id-generator-mappings: false
+    properties:
+      hibernate:
+        format_sql: true
+        dialect: ${datasource.dialect}
