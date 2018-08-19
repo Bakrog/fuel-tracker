@@ -18,4 +18,6 @@ Them just execute the jar generated at _target/fuel-tracker.jar_
 - Add report for list of fuel consumption for specified month
 - Add report for statistics for fuel type by month
 - Add driver Id parameter for reports
+- Save drivers before saving consumption?
+- Authentication?
 - Frontend with React?
