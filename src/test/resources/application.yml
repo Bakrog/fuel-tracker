@@ -7,6 +7,7 @@ spring:
   application:
     name: "Fuel Tracker"
   datasource:
+    url: ${test.datasource.url}
     hikari:
       connection-timeout: ${test.datasource.connection-timeout}
       minimum-idle: ${test.datasource.minimum-idle}

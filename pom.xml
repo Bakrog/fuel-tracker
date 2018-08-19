@@ -18,7 +18,7 @@
           Library dependency versions
         -->
         <mockito.version>2.21.0</mockito.version>
-        <junit.jupiter.version>5.2.0</junit.jupiter.version>
+        <junit.version>5.2.0</junit.version>
         <jsoup.version>1.10.2</jsoup.version>
         <h2.version>1.4.197</h2.version>
         <!--
@@ -29,6 +29,7 @@
         <junit.platform.version>1.2.0</junit.platform.version>
         <jacoco.version>0.8.1</jacoco.version>
         <spring.boot.version>2.0.4.RELEASE</spring.boot.version>
+        <flyway.version>5.1.4</flyway.version>
     </properties>
 
     <dependencies>
@@ -57,12 +58,23 @@
             <version>${h2.version}</version>
             <scope>runtime</scope>
         </dependency>
+        <dependency>
+            <groupId>org.flywaydb</groupId>
+            <artifactId>flyway-core</artifactId>
+            <version>${flyway.version}</version>
+        </dependency>
 
         <!-- Test -->
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-engine</artifactId>
-            <version>${junit.jupiter.version}</version>
+            <version>${junit.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.vintage</groupId>
+            <artifactId>junit-vintage-engine</artifactId>
+            <version>${junit.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
