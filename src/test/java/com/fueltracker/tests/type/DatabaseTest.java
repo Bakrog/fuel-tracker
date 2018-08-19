@@ -13,8 +13,8 @@ import java.lang.annotation.Target;
 
 @Target({ ElementType.TYPE, ElementType.METHOD })
 @Retention(RetentionPolicy.RUNTIME)
-@Tag("controller-test")
+@Tag("database-test")
 @ExtendWith(SpringExtension.class)
 @SpringBootTest(classes = {FuelTrackerApplication.class}, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public @interface ControllerTest {
+public @interface DatabaseTest {
 }
