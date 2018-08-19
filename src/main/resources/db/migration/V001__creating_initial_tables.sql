@@ -3,6 +3,8 @@ create TABLE tb_fuel_type (
     name VARCHAR(32) NOT NULL
 );
 
+CREATE UNIQUE INDEX tb_fuel_type_name_uindex ON tb_fuel_type (name);
+
 CREATE TABLE tb_consumption
 (
     consumption_id IDENTITY PRIMARY KEY NOT NULL,
