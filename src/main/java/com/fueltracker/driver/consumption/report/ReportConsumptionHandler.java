@@ -9,6 +9,10 @@ import org.springframework.transaction.annotation.Transactional;
 @Component
 public class ReportConsumptionHandler {
 
+    private final ReportConsumptionService service;
+
     @Autowired
-    private ReportConsumptionService service;
+    public ReportConsumptionHandler(ReportConsumptionService service) {
+        this.service = service;
+    }
 }

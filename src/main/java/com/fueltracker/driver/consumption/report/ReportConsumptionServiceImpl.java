@@ -9,6 +9,10 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 public class ReportConsumptionServiceImpl implements ReportConsumptionService {
 
+    private final ReportConsumptionRepository repository;
+
     @Autowired
-    private ReportConsumptionRepository repository;
+    public ReportConsumptionServiceImpl(ReportConsumptionRepository repository) {
+        this.repository = repository;
+    }
 }
