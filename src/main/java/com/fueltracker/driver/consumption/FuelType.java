@@ -33,7 +33,7 @@ public class FuelType {
         this.id = id;
     }
 
-    String getName() {
+    public String getName() {
         return name;
     }
 

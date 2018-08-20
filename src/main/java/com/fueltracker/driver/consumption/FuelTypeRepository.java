@@ -5,6 +5,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 
+/**
+ * Repository to make crud operations, searchs, others with {@link FuelType}
+ */
 @Transactional
 public interface FuelTypeRepository extends CrudRepository<FuelType, Long> {
 

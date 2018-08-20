@@ -15,7 +15,7 @@ import java.lang.annotation.Target;
 @Target({ ElementType.TYPE, ElementType.METHOD })
 @Retention(RetentionPolicy.RUNTIME)
 @Tag("service-test")
-@SpringBootTest(classes = {FuelTrackerApplication.class, PersistenceConfig.class}, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @ExtendWith(SpringExtension.class)
+@SpringBootTest(classes = {FuelTrackerApplication.class}, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public @interface ServiceTest {
 }

@@ -3,7 +3,7 @@ create TABLE tb_fuel_type (
     name VARCHAR(32) NOT NULL
 );
 
-CREATE UNIQUE INDEX tb_fuel_type_name_uindex ON tb_fuel_type (name);
+CREATE UNIQUE INDEX tb_fuel_type_uindex ON tb_fuel_type (name);
 
 CREATE TABLE tb_consumption
 (
@@ -15,3 +15,6 @@ CREATE TABLE tb_consumption
     driver_id BIGINT NOT NULL,
     CONSTRAINT fk_consumption__fuel_type FOREIGN KEY (fuel_type_id) REFERENCES tb_fuel_type (fuel_type_id)
 );
+
+// TODO: IF YOU ARE WORKING WITH TIMESTAMP UNCOMMENT THE NEXT LINE
+//CREATE UNIQUE INDEX tb_consumption_uindex ON tb_consumption (driver_id, consumption_date);
