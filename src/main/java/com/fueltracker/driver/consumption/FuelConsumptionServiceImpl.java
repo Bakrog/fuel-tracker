@@ -35,7 +35,7 @@ public class FuelConsumptionServiceImpl implements FuelConsumptionService {
     /**
      * {@inheritDoc}
      */
-    @Transactional(propagation = Propagation.NEVER)
+    @Transactional(propagation = Propagation.NEVER, readOnly = true)
     @Override
     public boolean validateFuelConsumptionEntry(FuelConsumptionDTO fuelConsumptionDTO) {
         final boolean hasFuelType = fuelConsumptionDTO.getFuelType() != null && fuelConsumptionDTO.getFuelType().length() > 0;
@@ -49,7 +49,7 @@ public class FuelConsumptionServiceImpl implements FuelConsumptionService {
     /**
      * {@inheritDoc}
      */
-    @Transactional(propagation = Propagation.NEVER)
+    @Transactional(propagation = Propagation.NEVER, readOnly = true)
     @Override
     public Flux<FuelConsumption> findAll() {
         return Flux.fromIterable(repository.findAll());
@@ -70,6 +70,7 @@ public class FuelConsumptionServiceImpl implements FuelConsumptionService {
     /**
      * {@inheritDoc}
      */
+    @Transactional(propagation = Propagation.REQUIRED)
     @Override
     public Flux<FuelConsumption> saveBulk(Path filePath) throws IllegalArgumentException {
         try {

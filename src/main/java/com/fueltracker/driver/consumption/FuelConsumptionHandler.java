@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.codec.multipart.FilePart;
 import org.springframework.http.codec.multipart.Part;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.reactive.function.BodyExtractors;
 import org.springframework.web.reactive.function.BodyInserters;
 import org.springframework.web.reactive.function.server.ServerRequest;
@@ -21,6 +23,7 @@ import java.util.Map;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON_UTF8;
 
+@Transactional
 @Component
 public class FuelConsumptionHandler {
 
@@ -36,6 +39,7 @@ public class FuelConsumptionHandler {
         this.service = service;
     }
 
+    @Transactional(propagation = Propagation.NEVER, readOnly = true)
     Mono<ServerResponse> findAllFuelConsumption(final ServerRequest request){
         LOGGER.info("Getting all fuel consumption.");
         return ServerResponse
@@ -58,7 +62,6 @@ public class FuelConsumptionHandler {
             Map<String, Part> map =parts.toSingleValueMap();
             if(!map.containsKey(FILE_KEY_FOR_BULK_INSERT)){
                 throw new RuntimeException("The parameter 'bulk' is obrigatory and needs to be a file.");
-                //ServerResponse.badRequest().contentType(APPLICATION_JSON_UTF8).body(BodyInserters.fromObject());
             } else if (!(map.get("bulk") instanceof FilePart)){
                 throw new RuntimeException("The parameter 'bulk' needs to be a file.");
             }
