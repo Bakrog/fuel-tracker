@@ -13,7 +13,7 @@ Them just execute the jar generated at _target/fuel-tracker.jar_
 # Roadmap
 
 - ~~Save driver fuel consumption~~
-- Bulk save driver fuel consumption
+- ~~Bulk save driver fuel consumption~~
 - Add report for spend amount of money by month
 - Add report for list of fuel consumption for specified month
 - Add report for statistics for fuel type by month

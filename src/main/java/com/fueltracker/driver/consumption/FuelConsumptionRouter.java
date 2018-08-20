@@ -8,6 +8,7 @@ import org.springframework.web.reactive.function.server.ServerResponse;
 
 import static org.springframework.http.MediaType.ALL;
 import static org.springframework.http.MediaType.APPLICATION_JSON_UTF8;
+import static org.springframework.http.MediaType.MULTIPART_FORM_DATA;
 import static org.springframework.web.reactive.function.server.RequestPredicates.*;
 
 @Configuration
@@ -27,10 +28,10 @@ public class FuelConsumptionRouter {
                                         .and(accept(APPLICATION_JSON_UTF8))
                                         .and(contentType(APPLICATION_JSON_UTF8)),
                                 fuelConsumptionHandler::saveFuelConsumption)
-                /*.andRoute(
-                        POST("/")
-                        .and(accept(MULTIPART_FORM_DATA)),
-                        fuelConsumptionHandler::importFuelConsumption)*/
+                        .andRoute(
+                                POST("/")
+                                .and(accept(MULTIPART_FORM_DATA)),
+                                fuelConsumptionHandler::importFuelConsumption)
         );
     }
 }
