@@ -5,7 +5,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @Configuration
-@EnableJpaRepositories
-@EntityScan(basePackages = {"com.fueltracker.driver.consumption"})
+@EnableJpaRepositories(basePackages = {"com.fueltracker.*"})
+@EntityScan(basePackages = {"com.fueltracker.*"})
 public class PersistenceConfig {
 }

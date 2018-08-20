@@ -1,5 +1,8 @@
 package com.fueltracker.driver.consumption;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -27,37 +30,38 @@ public class FuelConsumption {
     @Column(name = "consumption_date")
     private LocalDateTime date;
     @Column(name = "driver_id")
-    private Long driveId;
+    private Long driverId;
 
     public FuelConsumption() {
     }
 
-    public FuelConsumption(Long fuelTypeId, BigDecimal pricePerLiter, BigDecimal volumeInLiters, LocalDateTime date, Long driveId) {
+    public FuelConsumption(Long fuelTypeId, BigDecimal pricePerLiter, BigDecimal volumeInLiters, LocalDateTime date, Long driverId) {
         notNull(fuelTypeId, "The fuel consumption attribute 'fuelTypeId' can't be null!");
         notNull(pricePerLiter, "The fuel consumption attribute 'pricePerLiter' can't be null!");
         notNull(volumeInLiters, "The fuel consumption attribute 'volumeInLiters' can't be null!");
         notNull(date, "The fuel consumption attribute 'date' can't be null!");
-        notNull(driveId, "The fuel consumption attribute 'driveId' can't be null!");
+        notNull(driverId, "The fuel consumption attribute 'driverId' can't be null!");
         this.fuelTypeId = fuelTypeId;
         this.pricePerLiter = pricePerLiter;
         this.volumeInLiters = volumeInLiters;
         this.date = date;
-        this.driveId = driveId;
+        this.driverId = driverId;
     }
 
     public Long getId() {
         return id;
     }
 
-    void setId(Long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    Long getFuelTypeId() {
+    @JsonIgnore
+    public Long getFuelTypeId() {
         return fuelTypeId;
     }
 
-    void setFuelTypeId(Long fuelTypeId) {
+    public void setFuelTypeId(Long fuelTypeId) {
         this.fuelTypeId = fuelTypeId;
     }
 
@@ -69,36 +73,37 @@ public class FuelConsumption {
         this.fuelType = fuelType;
     }
 
-    BigDecimal getPricePerLiter() {
+    public BigDecimal getPricePerLiter() {
         return pricePerLiter;
     }
 
-    void setPricePerLiter(BigDecimal pricePerLiter) {
+    public void setPricePerLiter(BigDecimal pricePerLiter) {
         this.pricePerLiter = pricePerLiter;
     }
 
-    BigDecimal getVolumeInLiters() {
+    public BigDecimal getVolumeInLiters() {
         return volumeInLiters;
     }
 
-    void setVolumeInLiters(BigDecimal volumeInLiters) {
+    public void setVolumeInLiters(BigDecimal volumeInLiters) {
         this.volumeInLiters = volumeInLiters;
     }
 
-    LocalDateTime getDate() {
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "uuuu-MM-dd'T'HH:mm:ss.SSS")
+    public LocalDateTime getDate() {
         return date;
     }
 
-    void setDate(LocalDateTime date) {
+    public void setDate(LocalDateTime date) {
         this.date = date;
     }
 
-    Long getDriveId() {
-        return driveId;
+    public Long getDriverId() {
+        return driverId;
     }
 
-    void setDriveId(Long driveId) {
-        this.driveId = driveId;
+    public void setDriverId(Long driverId) {
+        this.driverId = driverId;
     }
 
     @Override
@@ -110,12 +115,12 @@ public class FuelConsumption {
                 Objects.equals(pricePerLiter, that.pricePerLiter) &&
                 Objects.equals(volumeInLiters, that.volumeInLiters) &&
                 Objects.equals(date, that.date) &&
-                Objects.equals(driveId, that.driveId);
+                Objects.equals(driverId, that.driverId);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(fuelTypeId, pricePerLiter, volumeInLiters, date, driveId);
+        return Objects.hash(fuelTypeId, pricePerLiter, volumeInLiters, date, driverId);
     }
 
     @Override
@@ -127,7 +132,7 @@ public class FuelConsumption {
                 ", pricePerLiter=" + pricePerLiter +
                 ", volumeInLiters=" + volumeInLiters +
                 ", date=" + date +
-                ", driveId=" + driveId +
+                ", driverId=" + driverId +
                 '}';
     }
 }
