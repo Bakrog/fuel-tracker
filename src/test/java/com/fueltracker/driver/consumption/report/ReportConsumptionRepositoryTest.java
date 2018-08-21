@@ -50,4 +50,20 @@ class ReportConsumptionRepositoryTest {
         Assertions.assertTrue(consumptions.size() > 0, "Report fuel consumption by month needs to retrieve data from the database");
         Assertions.assertEquals(2, consumptions.size(), "Report fuel consumption by month and driver 2 can only be 1");
     }
+
+    @DisplayName("can report fuel consumption by month grouped by fueltype")
+    @Test
+    void fuelConsumptionByMonthGroupedByFuelType(){
+        List<FuelConsumptionByFuelType> consumptions = repository.searchFuelConsumptionByMonthGroupedByFuelType(8);
+        Assertions.assertNotNull(consumptions, "Report fuel consumption cannot be null");
+        Assertions.assertTrue(consumptions.size() > 0, "Report fuel consumption by month needs to retrieve data from the database");
+    }
+
+    @DisplayName("can report fuel consumption by month by driver grouped by fueltype")
+    @Test
+    void fuelConsumptionByMonthByDriverGroupedByFuelType(){
+        List<FuelConsumptionByFuelType> consumptions = repository.searchFuelConsumptionByMonthAndDriverIdGroupedByFuelType(8, 2L);
+        Assertions.assertNotNull(consumptions, "Report spend by month grouped by fueltype cannot be null");
+        Assertions.assertTrue(consumptions.size() > 0, "Report fuel consumption by month grouped by fueltype needs to retrieve data from the database");
+    }
 }

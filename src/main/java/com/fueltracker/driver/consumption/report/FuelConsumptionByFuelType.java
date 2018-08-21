@@ -5,7 +5,6 @@ import java.util.Objects;
 
 public class FuelConsumptionByFuelType {
 
-    private String month;
     private String fuelType;
     private BigDecimal volume;
     private BigDecimal averagePrice;
@@ -14,12 +13,11 @@ public class FuelConsumptionByFuelType {
     public FuelConsumptionByFuelType() {
     }
 
-    public String getMonth() {
-        return month;
-    }
-
-    public void setMonth(String month) {
-        this.month = month;
+    public FuelConsumptionByFuelType(String fuelType, BigDecimal volume, double averagePrice, BigDecimal totalPrice) {
+        this.fuelType = fuelType;
+        this.volume = volume;
+        this.averagePrice = new BigDecimal(averagePrice);
+        this.totalPrice = totalPrice;
     }
 
     public String getFuelType() {
@@ -59,8 +57,7 @@ public class FuelConsumptionByFuelType {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         FuelConsumptionByFuelType that = (FuelConsumptionByFuelType) o;
-        return Objects.equals(month, that.month) &&
-                Objects.equals(fuelType, that.fuelType) &&
+        return Objects.equals(fuelType, that.fuelType) &&
                 Objects.equals(volume, that.volume) &&
                 Objects.equals(averagePrice, that.averagePrice) &&
                 Objects.equals(totalPrice, that.totalPrice);
@@ -68,14 +65,13 @@ public class FuelConsumptionByFuelType {
 
     @Override
     public int hashCode() {
-        return Objects.hash(month, fuelType, volume, averagePrice, totalPrice);
+        return Objects.hash(fuelType, volume, averagePrice, totalPrice);
     }
 
     @Override
     public String toString() {
         return "FuelConsumptionByFuelType{" +
-                "month='" + month + '\'' +
-                ", fuelType='" + fuelType + '\'' +
+                "fuelType='" + fuelType + '\'' +
                 ", volume=" + volume +
                 ", averagePrice=" + averagePrice +
                 ", totalPrice=" + totalPrice +
