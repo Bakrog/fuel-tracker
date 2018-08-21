@@ -1,6 +1,8 @@
 package com.fueltracker.driver.consumption.report;
 
 import java.math.BigDecimal;
+import java.text.DateFormatSymbols;
+import java.util.Locale;
 import java.util.Objects;
 
 public class MoneySpendDTO {
@@ -9,6 +11,11 @@ public class MoneySpendDTO {
     private BigDecimal totalSpent;
 
     public MoneySpendDTO() {
+    }
+
+    public MoneySpendDTO(int month, BigDecimal totalSpent) {
+        this.month = new DateFormatSymbols(Locale.ENGLISH).getMonths()[month-1];
+        this.totalSpent = totalSpent;
     }
 
     public String getMonth() {
