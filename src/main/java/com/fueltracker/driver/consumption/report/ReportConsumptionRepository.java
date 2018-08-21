@@ -1,6 +1,7 @@
 package com.fueltracker.driver.consumption.report;
 
 import com.fueltracker.driver.consumption.FuelConsumption;
+import com.fueltracker.driver.consumption.FuelConsumptionDTO;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -34,5 +35,36 @@ public interface ReportConsumptionRepository extends JpaRepository<FuelConsumpti
             "  fc.driverId = :driverId " +
             "GROUP BY " +
             "  month(fc.date) ")
-    List<MoneySpendDTO> searchMoneySpendByMonthByDriverId(@Param(value = "driverId") Long driverId);
+    List<MoneySpendDTO> searchMoneySpendByMonthAndDriverId(@Param(value = "driverId") Long driverId);
+
+    @Query(value = "" +
+            "SELECT new com.fueltracker.driver.consumption.FuelConsumptionDTO( " +
+            "  ft.name, " +
+            "  fc.date, " +
+            "  fc.pricePerLiter, " +
+            "  fc.volumeInLiters, " +
+            "  fc.driverId " +
+            ") " +
+            "FROM " +
+            "  FuelConsumption fc " +
+            "  JOIN fc.fuelType ft " +
+            "WHERE" +
+            "  month(fc.date) = :month ")
+    List<FuelConsumptionDTO> searchFuelConsumptionByMonth(@Param(value = "month") int month);
+
+    @Query(value = "" +
+            "SELECT new com.fueltracker.driver.consumption.FuelConsumptionDTO( " +
+            "  ft.name, " +
+            "  fc.date, " +
+            "  fc.pricePerLiter, " +
+            "  fc.volumeInLiters, " +
+            "  fc.driverId " +
+            ") " +
+            "FROM " +
+            "  FuelConsumption fc " +
+            "  JOIN fc.fuelType ft " +
+            "WHERE" +
+            "  month(fc.date) = :month " +
+            "  AND fc.driverId = :driverId ")
+    List<FuelConsumptionDTO> searchFuelConsumptionByMonthAndDriverId(@Param(value = "month") int month, @Param(value = "driverId") Long driverId);
 }
