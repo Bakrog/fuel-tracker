@@ -74,6 +74,12 @@ class ReportConsumptionServiceImplTest {
         void cannotSearchFuelConsumptionByDriverReport(){
             Assertions.assertThrows( RuntimeException.class, () -> service.searchFuelConsumptionByMonthAndDriverId(WRONG_MONTH, DRIVER_ID), "Need to throw exception if the month is invalid. Valid months: 0 <= month <= 11");
         }
+
+        @DisplayName("by month and driver but getting error without driver")
+        @Test
+        void cannotSearchFuelConsumptionByDriverReportWithoutDriver(){
+            Assertions.assertThrows( RuntimeException.class, () -> service.searchFuelConsumptionByMonthAndDriverId(SUCCESSFUL_MONTH, null), "Need to throw exception if the driver is null");
+        }
     }
 
     @Nested
@@ -106,6 +112,12 @@ class ReportConsumptionServiceImplTest {
         @Test
         void cannotSearchFuelConsumptionByDriverGroupedByFuelTypeReport(){
             Assertions.assertThrows( RuntimeException.class, () -> service.searchFuelConsumptionByMonthAndDriverIdGroupedByFuelType(WRONG_MONTH, DRIVER_ID), "Need to throw exception if the month is invalid. Valid months: 0 <= month <= 11");
+        }
+
+        @DisplayName("by month and driver grouped by fuel type but getting error without driver")
+        @Test
+        void cannotSearchFuelConsumptionByDriverGroupedByFuelTypeReportWithoutDriver(){
+            Assertions.assertThrows( RuntimeException.class, () -> service.searchFuelConsumptionByMonthAndDriverIdGroupedByFuelType(SUCCESSFUL_MONTH, null), "Need to throw exception if the driver is null");
         }
     }
 }
