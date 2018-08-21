@@ -11,10 +11,17 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
+/**
+ * Repository to get reports from {@link FuelConsumption}
+ */
 @Transactional(propagation = Propagation.NEVER, readOnly = true)
 @Repository
 public interface ReportConsumptionRepository extends JpaRepository<FuelConsumption, Long> {
 
+    /**
+     * Find the money spend by month of the {@link FuelConsumption}
+     * @return list of {@link MoneySpendDTO}
+     */
     @Query(value = "" +
             "SELECT new com.fueltracker.driver.consumption.report.MoneySpendDTO(" +
             "  month(fc.date), " +
@@ -25,6 +32,11 @@ public interface ReportConsumptionRepository extends JpaRepository<FuelConsumpti
             "  month(fc.date) ")
     List<MoneySpendDTO> searchMoneySpendByMonth();
 
+    /**
+     * Find the money spend by month of the {@link FuelConsumption} by driver
+     * @param driverId {@link Long} - the id of the driver
+     * @return list of {@link MoneySpendDTO} of the driver
+     */
     @Query(value = "" +
             "SELECT new com.fueltracker.driver.consumption.report.MoneySpendDTO(" +
             "  month(fc.date), " +
@@ -37,6 +49,11 @@ public interface ReportConsumptionRepository extends JpaRepository<FuelConsumpti
             "  month(fc.date) ")
     List<MoneySpendDTO> searchMoneySpendByMonthAndDriverId(@Param(value = "driverId") Long driverId);
 
+    /**
+     * Find the {@link FuelConsumption} list of the provided month
+     * @param month month of the year (0 - 11)
+     * @return list of {@link FuelConsumptionDTO}
+     */
     @Query(value = "" +
             "SELECT new com.fueltracker.driver.consumption.FuelConsumptionDTO( " +
             "  ft.name, " +
@@ -52,6 +69,12 @@ public interface ReportConsumptionRepository extends JpaRepository<FuelConsumpti
             "  month(fc.date) = :month ")
     List<FuelConsumptionDTO> searchFuelConsumptionByMonth(@Param(value = "month") int month);
 
+    /**
+     * Find the {@link FuelConsumption} list of the provided month by driver
+     * @param month month of the year (0 - 11)
+     * @param driverId {@link Long} - the id of the driver
+     * @return list of {@link FuelConsumptionDTO}
+     */
     @Query(value = "" +
             "SELECT new com.fueltracker.driver.consumption.FuelConsumptionDTO( " +
             "  ft.name, " +
@@ -68,6 +91,11 @@ public interface ReportConsumptionRepository extends JpaRepository<FuelConsumpti
             "  AND fc.driverId = :driverId ")
     List<FuelConsumptionDTO> searchFuelConsumptionByMonthAndDriverId(@Param(value = "month") int month, @Param(value = "driverId") Long driverId);
 
+    /**
+     * Find the {@link FuelConsumptionByFuelType} list of the provided month
+     * @param month month of the year (0 - 11)
+     * @return list of {@link FuelConsumptionByFuelType}
+     */
     @Query(value = "" +
             "SELECT new com.fueltracker.driver.consumption.report.FuelConsumptionByFuelType( " +
             "  ft.name, " +
@@ -84,6 +112,12 @@ public interface ReportConsumptionRepository extends JpaRepository<FuelConsumpti
             "  ft.name")
     List<FuelConsumptionByFuelType> searchFuelConsumptionByMonthGroupedByFuelType(@Param(value = "month") int month);
 
+    /**
+     * Find the {@link FuelConsumptionByFuelType} list of the provided month by driver
+     * @param month month of the year (0 - 11)
+     * @param driverId {@link Long} - the id of the driver
+     * @return list of {@link FuelConsumptionByFuelType} by driver
+     */
     @Query(value = "" +
             "SELECT new com.fueltracker.driver.consumption.report.FuelConsumptionByFuelType( " +
             "  ft.name, " +
