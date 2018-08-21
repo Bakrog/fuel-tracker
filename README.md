@@ -1,4 +1,4 @@
-# fuel-tracker
+# fuel-tracker [![Build Status](https://travis-ci.com/Bakrog/fuel-tracker.svg?branch=feature%2Freports)](https://travis-ci.com/Bakrog/fuel-tracker)
 Track fuel consumption for small transportation company's
 
 # Installation
