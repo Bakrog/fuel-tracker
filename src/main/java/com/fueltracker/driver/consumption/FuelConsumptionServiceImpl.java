@@ -1,5 +1,7 @@
 package com.fueltracker.driver.consumption;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -20,6 +22,8 @@ import java.time.format.DateTimeFormatter;
 @Transactional
 @Service
 public class FuelConsumptionServiceImpl implements FuelConsumptionService {
+
+    private static final Logger LOGGER = LogManager.getLogger(FuelConsumptionServiceImpl.class);
 
     private static final DateTimeFormatter dtf = DateTimeFormatter.ofPattern("uuuu-MM-dd HH:mm:ss");
 
@@ -74,8 +78,9 @@ public class FuelConsumptionServiceImpl implements FuelConsumptionService {
     @Override
     public Flux<FuelConsumption> saveBulk(Path filePath) throws IllegalArgumentException {
         try {
-            return Flux.fromStream(Files.lines(filePath) )
+            return Flux.fromStream( Files.lines(filePath) )
                     .map(this::convertToDTO)
+                    .onErrorResume(throwable -> Flux.empty())
                     .flatMap(this::save);
         } catch (IOException e) {
             throw new RuntimeException("Error while reading file to bulk save", e);
