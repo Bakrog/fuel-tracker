@@ -16,7 +16,7 @@ class ReportConsumptionServiceImplTest {
 
     private static final Long DRIVER_ID = 1L;
     private static final int SUCCESSFUL_MONTH = 8;
-    private static final int WRONG_MONTH = 12;
+    private static final int WRONG_MONTH = 0;
 
     @SuppressWarnings("SpringJavaAutowiredMembersInspection")
     @Autowired
@@ -58,7 +58,7 @@ class ReportConsumptionServiceImplTest {
         @DisplayName("by month but getting error with wrong month")
         @Test
         void cannotSearchFuelConsumptionReport(){
-            Assertions.assertThrows( RuntimeException.class, () -> service.searchFuelConsumptionByMonth(WRONG_MONTH), "Need to throw exception if the month is invalid. Valid months: 0 <= month <= 11");
+            Assertions.assertThrows( RuntimeException.class, () -> service.searchFuelConsumptionByMonth(WRONG_MONTH), "Need to throw exception if the month is invalid. Valid months: 1 <= month <= 12");
         }
 
         @DisplayName("by month and driver")
@@ -72,7 +72,7 @@ class ReportConsumptionServiceImplTest {
         @DisplayName("by month and driver but getting error with wrong month")
         @Test
         void cannotSearchFuelConsumptionByDriverReport(){
-            Assertions.assertThrows( RuntimeException.class, () -> service.searchFuelConsumptionByMonthAndDriverId(WRONG_MONTH, DRIVER_ID), "Need to throw exception if the month is invalid. Valid months: 0 <= month <= 11");
+            Assertions.assertThrows( RuntimeException.class, () -> service.searchFuelConsumptionByMonthAndDriverId(WRONG_MONTH, DRIVER_ID), "Need to throw exception if the month is invalid. Valid months: 1 <= month <= 12");
         }
 
         @DisplayName("by month and driver but getting error without driver")
@@ -97,7 +97,7 @@ class ReportConsumptionServiceImplTest {
         @DisplayName("by month grouped by fuel type but getting error with wrong month")
         @Test
         void cannotSearchFuelConsumptionGroupedByFuelTypeReport(){
-            Assertions.assertThrows( RuntimeException.class, () -> service.searchFuelConsumptionByMonthGroupedByFuelType(WRONG_MONTH), "Need to throw exception if the month is invalid. Valid months: 0 <= month <= 11");
+            Assertions.assertThrows( RuntimeException.class, () -> service.searchFuelConsumptionByMonthGroupedByFuelType(WRONG_MONTH), "Need to throw exception if the month is invalid. Valid months: 1 <= month <= 12");
         }
 
         @DisplayName("by month and driver grouped by fuel type")
@@ -111,7 +111,7 @@ class ReportConsumptionServiceImplTest {
         @DisplayName("by month and driver grouped by fuel type but getting error with wrong month")
         @Test
         void cannotSearchFuelConsumptionByDriverGroupedByFuelTypeReport(){
-            Assertions.assertThrows( RuntimeException.class, () -> service.searchFuelConsumptionByMonthAndDriverIdGroupedByFuelType(WRONG_MONTH, DRIVER_ID), "Need to throw exception if the month is invalid. Valid months: 0 <= month <= 11");
+            Assertions.assertThrows( RuntimeException.class, () -> service.searchFuelConsumptionByMonthAndDriverIdGroupedByFuelType(WRONG_MONTH, DRIVER_ID), "Need to throw exception if the month is invalid. Valid months: 1 <= month <= 12'");
         }
 
         @DisplayName("by month and driver grouped by fuel type but getting error without driver")

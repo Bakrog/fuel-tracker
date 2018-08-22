@@ -101,6 +101,6 @@ public class ReportConsumptionHandler {
 
     private Mono<ServerResponse> wrongMonthInformed(String monthString, NumberFormatException nfe) {
         LOGGER.error(String.format("Wrong month value informed: %s", monthString), nfe);
-        throw new RuntimeException(String.format("The month informed '%s' its not a valid month. Valid months: 0 <= month <= 11", monthString));
+        throw new RuntimeException(String.format("The month informed '%s' its not a valid month. Valid months: 1 <= month <= 12", monthString));
     }
 }

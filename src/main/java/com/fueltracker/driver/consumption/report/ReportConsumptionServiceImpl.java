@@ -22,7 +22,7 @@ public class ReportConsumptionServiceImpl implements ReportConsumptionService {
     }
 
     private boolean isValidMonth(int month){
-        return month >= 0 && month < 12;
+        return month > 0 && month < 13;
     }
 
     /**
@@ -49,7 +49,7 @@ public class ReportConsumptionServiceImpl implements ReportConsumptionService {
         if(isValidMonth(month)){
             return Flux.fromIterable( repository.searchFuelConsumptionByMonth( month ) );
         }
-        throw new RuntimeException(String.format("The month %s provided isnt a valid month: 0 <= month <= 11", month));
+        throw new RuntimeException(String.format("The month %s provided isnt a valid month: 1 <= month <= 12", month));
     }
 
     /**
@@ -62,7 +62,7 @@ public class ReportConsumptionServiceImpl implements ReportConsumptionService {
         } else if (driverId == null){
             throw new RuntimeException("The driver id is required!");
         }
-        throw new RuntimeException(String.format("The month %s provided isnt a valid month: 0 <= month <= 11", month));
+        throw new RuntimeException(String.format("The month %s provided isnt a valid month: 1 <= month <= 12", month));
     }
 
     /**
@@ -73,7 +73,7 @@ public class ReportConsumptionServiceImpl implements ReportConsumptionService {
         if(isValidMonth(month)){
             return Flux.fromIterable( repository.searchFuelConsumptionByMonthGroupedByFuelType( month ) );
         }
-        throw new RuntimeException(String.format("The month %s provided isnt a valid month: 0 <= month <= 11", month));
+        throw new RuntimeException(String.format("The month %s provided isnt a valid month: 1 <= month <= 12", month));
     }
 
     /**
@@ -86,6 +86,6 @@ public class ReportConsumptionServiceImpl implements ReportConsumptionService {
         } else if (driverId == null){
             throw new RuntimeException("The driver id is required!");
         }
-        throw new RuntimeException(String.format("The month %s provided isnt a valid month: 0 <= month <= 11", month));
+        throw new RuntimeException(String.format("The month %s provided isnt a valid month: 1 <= month <= 12", month));
     }
 }
