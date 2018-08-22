@@ -20,7 +20,7 @@
         <mockito.version>2.21.0</mockito.version>
         <junit.version>5.2.0</junit.version>
         <jsoup.version>1.10.2</jsoup.version>
-        <h2.version>1.4.197</h2.version>
+        <h2.version>1.4.195</h2.version>
         <flyway.version>5.1.4</flyway.version>
         <log4j.version>2.11.1</log4j.version>
         <spring.boot.version>2.0.4.RELEASE</spring.boot.version>
