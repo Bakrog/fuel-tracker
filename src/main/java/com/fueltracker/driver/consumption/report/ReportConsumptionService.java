@@ -38,17 +38,17 @@ public interface ReportConsumptionService {
     Flux<FuelConsumptionDTO> searchFuelConsumptionByMonthAndDriverId(final int month, final Long driverId);
 
     /**
-     * Find the {@link FuelConsumptionByFuelType} list of the provided month
+     * Find the {@link FuelConsumptionByFuelTypeDTO} list of the provided month
      * @param month month of the year (0 - 11)
-     * @return {@link Flux} of {@link FuelConsumptionByFuelType}
+     * @return {@link Flux} of {@link FuelConsumptionByFuelTypeDTO}
      */
-    Flux<FuelConsumptionByFuelType> searchFuelConsumptionByMonthGroupedByFuelType(final int month);
+    Flux<FuelConsumptionByFuelTypeDTO> searchFuelConsumptionByMonthGroupedByFuelType(final int month);
 
     /**
-     * Find the {@link FuelConsumptionByFuelType} list of the provided month by driver
+     * Find the {@link FuelConsumptionByFuelTypeDTO} list of the provided month by driver
      * @param month month of the year (0 - 11)
      * @param driverId {@link Long} - the id of the driver
-     * @return {@link Flux} of {@link FuelConsumptionByFuelType} by driver
+     * @return {@link Flux} of {@link FuelConsumptionByFuelTypeDTO} by driver
      */
-    Flux<FuelConsumptionByFuelType> searchFuelConsumptionByMonthAndDriverIdGroupedByFuelType(final int month, final Long driverId);
+    Flux<FuelConsumptionByFuelTypeDTO> searchFuelConsumptionByMonthAndDriverIdGroupedByFuelType(final int month, final Long driverId);
 }

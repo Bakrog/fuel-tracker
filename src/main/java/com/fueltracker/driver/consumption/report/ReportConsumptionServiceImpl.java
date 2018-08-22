@@ -69,7 +69,7 @@ public class ReportConsumptionServiceImpl implements ReportConsumptionService {
      * {@inheritDoc}
      */
     @Override
-    public Flux<FuelConsumptionByFuelType> searchFuelConsumptionByMonthGroupedByFuelType(int month) {
+    public Flux<FuelConsumptionByFuelTypeDTO> searchFuelConsumptionByMonthGroupedByFuelType(int month) {
         if(isValidMonth(month)){
             return Flux.fromIterable( repository.searchFuelConsumptionByMonthGroupedByFuelType( month ) );
         }
@@ -80,7 +80,7 @@ public class ReportConsumptionServiceImpl implements ReportConsumptionService {
      * {@inheritDoc}
      */
     @Override
-    public Flux<FuelConsumptionByFuelType> searchFuelConsumptionByMonthAndDriverIdGroupedByFuelType(int month, Long driverId) {
+    public Flux<FuelConsumptionByFuelTypeDTO> searchFuelConsumptionByMonthAndDriverIdGroupedByFuelType(int month, Long driverId) {
         if(driverId != null && isValidMonth(month)){
             return Flux.fromIterable( repository.searchFuelConsumptionByMonthAndDriverIdGroupedByFuelType( month, driverId ) );
         } else if (driverId == null){

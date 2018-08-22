@@ -3,17 +3,17 @@ package com.fueltracker.driver.consumption.report;
 import java.math.BigDecimal;
 import java.util.Objects;
 
-public class FuelConsumptionByFuelType {
+public class FuelConsumptionByFuelTypeDTO {
 
     private String fuelType;
     private BigDecimal volume;
     private BigDecimal averagePrice;
     private BigDecimal totalPrice;
 
-    public FuelConsumptionByFuelType() {
+    public FuelConsumptionByFuelTypeDTO() {
     }
 
-    public FuelConsumptionByFuelType(String fuelType, BigDecimal volume, double averagePrice, BigDecimal totalPrice) {
+    public FuelConsumptionByFuelTypeDTO(String fuelType, BigDecimal volume, double averagePrice, BigDecimal totalPrice) {
         this.fuelType = fuelType;
         this.volume = volume;
         this.averagePrice = new BigDecimal(averagePrice);
@@ -56,7 +56,7 @@ public class FuelConsumptionByFuelType {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        FuelConsumptionByFuelType that = (FuelConsumptionByFuelType) o;
+        FuelConsumptionByFuelTypeDTO that = (FuelConsumptionByFuelTypeDTO) o;
         return Objects.equals(fuelType, that.fuelType) &&
                 Objects.equals(volume, that.volume) &&
                 Objects.equals(averagePrice, that.averagePrice) &&
@@ -70,7 +70,7 @@ public class FuelConsumptionByFuelType {
 
     @Override
     public String toString() {
-        return "FuelConsumptionByFuelType{" +
+        return "FuelConsumptionByFuelTypeDTO{" +
                 "fuelType='" + fuelType + '\'' +
                 ", volume=" + volume +
                 ", averagePrice=" + averagePrice +

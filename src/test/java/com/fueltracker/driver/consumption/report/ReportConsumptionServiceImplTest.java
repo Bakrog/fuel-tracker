@@ -89,7 +89,7 @@ class ReportConsumptionServiceImplTest {
         @DisplayName("by month grouped by fuel type")
         @Test
         void canSearchFuelConsumptionGroupedByFuelTypeReport(){
-            List<FuelConsumptionByFuelType> consumptionByMonth = service.searchFuelConsumptionByMonthGroupedByFuelType(SUCCESSFUL_MONTH).collectList().block();
+            List<FuelConsumptionByFuelTypeDTO> consumptionByMonth = service.searchFuelConsumptionByMonthGroupedByFuelType(SUCCESSFUL_MONTH).collectList().block();
             Assertions.assertNotNull(consumptionByMonth, "Need to return a not null list of consumption by month grouped by fuel type");
             Assertions.assertTrue(consumptionByMonth.size() > 0, "Need to return the consumptions by month grouped by fuel type");
         }
@@ -103,7 +103,7 @@ class ReportConsumptionServiceImplTest {
         @DisplayName("by month and driver grouped by fuel type")
         @Test
         void canSearchFuelConsumptionByDriverGroupedByFuelTypeReport(){
-            List<FuelConsumptionByFuelType> consumptionByMonthAndDriver = service.searchFuelConsumptionByMonthAndDriverIdGroupedByFuelType(SUCCESSFUL_MONTH, DRIVER_ID).collectList().block();
+            List<FuelConsumptionByFuelTypeDTO> consumptionByMonthAndDriver = service.searchFuelConsumptionByMonthAndDriverIdGroupedByFuelType(SUCCESSFUL_MONTH, DRIVER_ID).collectList().block();
             Assertions.assertNotNull(consumptionByMonthAndDriver, "Need to return a not null list of consumption by month and driver grouped by fuel type");
             Assertions.assertTrue(consumptionByMonthAndDriver.size() > 0, "Need to return the consumptions by month and driver grouped by fuel type");
         }

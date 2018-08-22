@@ -92,12 +92,12 @@ public interface ReportConsumptionRepository extends JpaRepository<FuelConsumpti
     List<FuelConsumptionDTO> searchFuelConsumptionByMonthAndDriverId(@Param(value = "month") int month, @Param(value = "driverId") Long driverId);
 
     /**
-     * Find the {@link FuelConsumptionByFuelType} list of the provided month
+     * Find the {@link FuelConsumptionByFuelTypeDTO} list of the provided month
      * @param month month of the year (0 - 11)
-     * @return list of {@link FuelConsumptionByFuelType}
+     * @return list of {@link FuelConsumptionByFuelTypeDTO}
      */
     @Query(value = "" +
-            "SELECT new com.fueltracker.driver.consumption.report.FuelConsumptionByFuelType( " +
+            "SELECT new com.fueltracker.driver.consumption.report.FuelConsumptionByFuelTypeDTO( " +
             "  ft.name, " +
             "  sum(fc.volumeInLiters), " +
             "  avg(fc.pricePerLiter), " +
@@ -110,16 +110,16 @@ public interface ReportConsumptionRepository extends JpaRepository<FuelConsumpti
             "  month(fc.date) = :month " +
             "GROUP BY " +
             "  ft.name")
-    List<FuelConsumptionByFuelType> searchFuelConsumptionByMonthGroupedByFuelType(@Param(value = "month") int month);
+    List<FuelConsumptionByFuelTypeDTO> searchFuelConsumptionByMonthGroupedByFuelType(@Param(value = "month") int month);
 
     /**
-     * Find the {@link FuelConsumptionByFuelType} list of the provided month by driver
+     * Find the {@link FuelConsumptionByFuelTypeDTO} list of the provided month by driver
      * @param month month of the year (0 - 11)
      * @param driverId {@link Long} - the id of the driver
-     * @return list of {@link FuelConsumptionByFuelType} by driver
+     * @return list of {@link FuelConsumptionByFuelTypeDTO} by driver
      */
     @Query(value = "" +
-            "SELECT new com.fueltracker.driver.consumption.report.FuelConsumptionByFuelType( " +
+            "SELECT new com.fueltracker.driver.consumption.report.FuelConsumptionByFuelTypeDTO( " +
             "  ft.name, " +
             "  sum(fc.volumeInLiters), " +
             "  avg(fc.pricePerLiter), " +
@@ -133,5 +133,5 @@ public interface ReportConsumptionRepository extends JpaRepository<FuelConsumpti
             "  AND fc.driverId = :driverId " +
             "GROUP BY " +
             "  ft.name")
-    List<FuelConsumptionByFuelType> searchFuelConsumptionByMonthAndDriverIdGroupedByFuelType(@Param(value = "month") int month, @Param(value = "driverId") Long driverId);
+    List<FuelConsumptionByFuelTypeDTO> searchFuelConsumptionByMonthAndDriverIdGroupedByFuelType(@Param(value = "month") int month, @Param(value = "driverId") Long driverId);
 }
