@@ -27,7 +27,7 @@ class FuelConsumptionTest {
         Mockito.when(fuelConsumption.getPricePerLiter()).thenReturn(PRICE_PER_LITER);
         Mockito.when(fuelConsumption.getVolumeInLiters()).thenReturn(VOLUME_IN_LITERS);
         Mockito.when(fuelConsumption.getDate()).thenReturn(DATE_TIME);
-        Mockito.when(fuelConsumption.getDriveId()).thenReturn(DRIVER_ID);
+        Mockito.when(fuelConsumption.getDriverId()).thenReturn(DRIVER_ID);
     }
 
     @DisplayName("has a valid fuel type id")
@@ -61,7 +61,7 @@ class FuelConsumptionTest {
     @DisplayName("has a valid driver id")
     @Test
     void testDriverId(){
-        this.fuelConsumption.setDriveId(DRIVER_ID);
-        Assertions.assertEquals(DRIVER_ID, this.fuelConsumption.getDriveId(), "Driver id is not valid");
+        this.fuelConsumption.setDriverId(DRIVER_ID);
+        Assertions.assertEquals(DRIVER_ID, this.fuelConsumption.getDriverId(), "Driver id is not valid");
     }
 }
