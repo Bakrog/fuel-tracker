@@ -24,3 +24,7 @@ spring:
         dialect: ${test.datasource.dialect}
   flyway:
     ignore-missing-migrations: true
+  resources:
+    add-mappings: false
+  mvc:
+    throw-exception-if-no-handler-found: true
