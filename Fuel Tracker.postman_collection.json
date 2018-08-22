@@ -1,0 +1,256 @@
+{
+	"info": {
+		"_postman_id": "8d03ec74-c43b-401c-800f-f5aee05be423",
+		"name": "Fuel Tracker",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Reports",
+			"item": [
+				{
+					"name": "Spended Money",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:8080/report/spended-by-month",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"report",
+								"spended-by-month"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Spended Money By Driver",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:8080/report/spended-by-month/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"report",
+								"spended-by-month",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Fuel Consumption By Month",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:8080/report/fuel-consumption/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"report",
+								"fuel-consumption",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Fuel Consumption By Month Grouped By Fuel Type",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:8080/report/fuel-consumption-by-fuel-type/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"report",
+								"fuel-consumption-by-fuel-type",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Fuel Consumption By Month And Driver Grouped By Fuel Type",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:8080/report/fuel-consumption-by-fuel-type/2/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"report",
+								"fuel-consumption-by-fuel-type",
+								"2",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Fuel Consumption By Month And Driver",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:8080/report/fuel-consumption/2/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"report",
+								"fuel-consumption",
+								"2",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Fuel Consumption",
+			"item": [
+				{
+					"name": "Find All Fuel Consumption",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:8080/fuel-consumption",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"fuel-consumption"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Save Fuel Consumption",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"fuelType\": \"Gasolina\",\n\t\"date\": \"2018-08-20T14:20:00.000\",\n\t\"pricePerLiter\": 5.24,\n\t\"volumeInLiters\": 52.9,\n\t\"driverId\": 123\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/fuel-consumption",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"fuel-consumption"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Bulk Save Fuel Consumption",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "bulk",
+									"sessionValue": {
+										"0": {}
+									},
+									"type": "file"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/fuel-consumption",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"fuel-consumption"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Actuator",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8080/actuator",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"actuator"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
