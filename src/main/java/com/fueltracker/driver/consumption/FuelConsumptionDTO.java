@@ -1,5 +1,7 @@
 package com.fueltracker.driver.consumption;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.Objects;
@@ -34,6 +36,7 @@ public class FuelConsumptionDTO {
         this.fuelType = fuelType;
     }
 
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "uuuu-MM-dd'T'HH:mm:ss.SSS")
     public LocalDateTime getDate() {
         return date;
     }

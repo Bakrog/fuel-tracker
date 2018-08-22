@@ -3,11 +3,10 @@ package com.fueltracker.driver.consumption;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
-import java.io.IOException;
 import java.nio.file.Path;
 
 /**
- * Interface responsable to provide bussiness logic for the fuel consumption
+ * Interface responsible to provide bussiness logic for the fuel consumption
  */
 public interface FuelConsumptionService {
 

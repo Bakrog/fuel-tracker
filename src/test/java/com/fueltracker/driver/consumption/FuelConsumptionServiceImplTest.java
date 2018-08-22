@@ -152,6 +152,15 @@ class FuelConsumptionServiceImplTest {
             Assertions.assertEquals(6, fuelConsumptionList.size(), "The fuel consumption service needs to save 6 fuel consumptions in the database");
             Assertions.assertEquals(totalInDatabaseAfterBulk, fuelConsumptionRepository.count(), "The number of fuel consumption saved on the database after bulk save is wrong");
         }
+
+        @Test
+        @DisplayName("cannot bulk save from a file because of too few attributes")
+        void cannotBulkSaveFromFile(){
+            final Path testFilePath = Paths.get( this.getClass().getResource("/error_bulk_insert_test.txt").getPath() );
+            final List<FuelConsumption> consumptions = service.saveBulk(testFilePath).collectList().block();
+            Assertions.assertNotNull(consumptions, "The result cannot be null");
+            Assertions.assertNotEquals(4, consumptions.size(), "Too few columns in CSV file needs to return less saved data");
+        }
     }
 
     @Nested

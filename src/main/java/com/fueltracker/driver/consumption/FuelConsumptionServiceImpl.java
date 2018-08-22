@@ -1,5 +1,7 @@
 package com.fueltracker.driver.consumption;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -21,6 +23,8 @@ import java.time.format.DateTimeFormatter;
 @Service
 public class FuelConsumptionServiceImpl implements FuelConsumptionService {
 
+    private static final Logger LOGGER = LogManager.getLogger(FuelConsumptionServiceImpl.class);
+
     private static final DateTimeFormatter dtf = DateTimeFormatter.ofPattern("uuuu-MM-dd HH:mm:ss");
 
     private final FuelConsumptionRepository repository;
@@ -35,7 +39,7 @@ public class FuelConsumptionServiceImpl implements FuelConsumptionService {
     /**
      * {@inheritDoc}
      */
-    @Transactional(propagation = Propagation.NEVER)
+    @Transactional(propagation = Propagation.NEVER, readOnly = true)
     @Override
     public boolean validateFuelConsumptionEntry(FuelConsumptionDTO fuelConsumptionDTO) {
         final boolean hasFuelType = fuelConsumptionDTO.getFuelType() != null && fuelConsumptionDTO.getFuelType().length() > 0;
@@ -49,7 +53,7 @@ public class FuelConsumptionServiceImpl implements FuelConsumptionService {
     /**
      * {@inheritDoc}
      */
-    @Transactional(propagation = Propagation.NEVER)
+    @Transactional(propagation = Propagation.NEVER, readOnly = true)
     @Override
     public Flux<FuelConsumption> findAll() {
         return Flux.fromIterable(repository.findAll());
@@ -70,11 +74,13 @@ public class FuelConsumptionServiceImpl implements FuelConsumptionService {
     /**
      * {@inheritDoc}
      */
+    @Transactional(propagation = Propagation.REQUIRED)
     @Override
     public Flux<FuelConsumption> saveBulk(Path filePath) throws IllegalArgumentException {
         try {
-            return Flux.fromStream(Files.lines(filePath) )
+            return Flux.fromStream( Files.lines(filePath) )
                     .map(this::convertToDTO)
+                    .onErrorResume(throwable -> Flux.empty())
                     .flatMap(this::save);
         } catch (IOException e) {
             throw new RuntimeException("Error while reading file to bulk save", e);
